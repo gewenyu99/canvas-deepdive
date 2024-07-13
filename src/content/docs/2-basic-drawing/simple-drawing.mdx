@@ -1,0 +1,16 @@
+---
+title: Simple Drawing
+description: Drawing basic shapes on a HTML5 Canvas.
+prev: true
+---
+
+import RedSquareWithResize from "@components/RedSquareWithResize.astro";
+import { Card } from "@astrojs/starlight/components";
+
+As I said before, Canvas is a simple 2D API. If you've done any coding work with Flash or Java 2D it should seem pretty familar. You get a reference to a graphics context, set some properties like the current fill or stroke color, then draw some shapes. Here are a few of examples.
+
+In this example we set the current color to red and draw a rectangle. **Drag the numbers in the code to change the values and see how it affects the rectangle.**
+
+<Card title="Example:" icon="open-book">
+  <RedSquareWithResize client:load />
+</Card>

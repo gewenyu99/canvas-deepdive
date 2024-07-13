@@ -4,9 +4,16 @@ description: placeholder
 prev: true
 ---
 
-*Josh Marinacci*  
-[@joshmarinacci](https://twitter.com/joshmarinacci)  
-[Josh On Design.com](https://joshondesign.com)
+import { LinkCard, CardGrid, Card } from "@astrojs/starlight/components";
+
+<Card title="About the Author" icon="document">
+  I am Josh Marinacci: manager, developer advocate, software engineer,
+  researcher, usability expert, and general miscreant.
+  <CardGrid>
+    <LinkCard title="Follow me on X" href="https://twitter.com/joshmarinacci" />
+    <LinkCard title="Josh On Design" href="https://joshondesign.com" />
+  </CardGrid>
+</Card>
 
 What you are reading is an ebook experiment. It is built to showcase the power of modern web standards with interactive electronic texts. Everything you see is done with HTML, CSS, and JavaScript; bundled into book form with open source tools. Read by scrolling down through each chapter or using the navigation footer at the bottom of the screen.
 

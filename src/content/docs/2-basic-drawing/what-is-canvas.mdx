@@ -1,0 +1,28 @@
+---
+title: What is Canvas?
+description: Introduction to HTML5 Canvas by definition.
+prev: true
+---
+
+import { Card } from "@astrojs/starlight/components";
+import RedSquare from "@components/RedSquare.astro";
+
+Canvas is a 2D drawing API. Essentially the browser gives you a rectanglar area on the screen that you can draw into. You can draw lines, shapes, images, text; pretty much anything you want. Canvas was originally created by Apple for its Dashboard widgets, but it has since been adopted by every major browser vendor and is now part of the HTML 5 spec. Here's a quick example of what some Canvas code looks like:
+
+```html
+<html>
+  <body>
+    <canvas width="800" height="600" id="canvas"></canvas>
+    <script>
+      var canvas = document.getElementById("canvas");
+      var c = canvas.getContext("2d");
+      c.fillStyle = "red";
+      c.fillRect(100, 100, 400, 300);
+    </script>
+  </body>
+</html>
+```
+
+<Card title="Example:" icon="open-book">
+  <RedSquare />
+</Card>

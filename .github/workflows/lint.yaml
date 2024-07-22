@@ -24,8 +24,8 @@ jobs:
 
       - name: Trunk Check
         uses: trunk-io/trunk-action@v1
-        # with:
-          # post-annotations: true # only for fork PRs
+        with:
+          post-annotations: true # only for fork PRs
 
 
   

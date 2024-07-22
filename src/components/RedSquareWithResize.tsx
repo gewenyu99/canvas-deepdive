@@ -23,7 +23,7 @@ const RedSquareWithResize: React.FC = () => {
     const context = canvas?.getContext("2d");
 
     //Our draw come here
-    draw(context);
+      draw(context );
   }, [draw]);
 
   return (

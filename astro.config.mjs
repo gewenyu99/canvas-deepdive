@@ -3,13 +3,14 @@ import starlight from "@astrojs/starlight";
 import markdoc from "@astrojs/markdoc";
 import react from "@astrojs/react";
 
+
 import tailwind from "@astrojs/tailwind";
 
 // https://astro.build/config
 export default defineConfig({
   integrations: [
     starlight({
-      title: "HTML Canvas Deep Dive",
+        title: "HTML Canvas Deep Dive",
       // social: {
       // 	github: 'https://github.com/withastro/starlight',
       // },

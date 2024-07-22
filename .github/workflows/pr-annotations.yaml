@@ -2,22 +2,17 @@ name: Annotate PR with trunk issues
 
 on:
   workflow_run:
-    workflows: [Pull Request]
+    workflows: ["Pull Request"]
     types: [completed]
-
-permissions: read-all
 
 jobs:
   trunk_check:
     name: Trunk Check Annotate
     runs-on: ubuntu-latest
 
-    permissions:
-      checks: write
-
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
       - name: Trunk Check
         uses: trunk-io/trunk-action@v1

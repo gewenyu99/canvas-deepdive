@@ -17,7 +17,9 @@ permissions:
 
 jobs:
   Lint:
+    name: Trunk Check Annotate
     runs-on: ubuntu-latest
+    permissions:
     steps:
       - name: Checkout
         uses: actions/checkout@v3

@@ -1,27 +1,60 @@
-name: Annotate PR with trunk issues
+name: CI
 
 on:
   push:
-    branches: [ "*" ]
+    branches:
+      - main
+      - develop
   pull_request:
-    branches: [ "main" ]
-    types: [ "completed" ]
 
-permissions: read-all
+# cancel in-progress runs on new commits to same PR (gitub.event.number)
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.number || github.sha }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read # to fetch code (actions/checkout)
 
 jobs:
-  trunk_check:
-    name: Trunk Check Annotate
+  Lint:
     runs-on: ubuntu-latest
-
-    permissions:
-      checks: write
-
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Trunk Check
-        uses: trunk-io/trunk-action@v1
+      - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
         with:
-          post-annotations: true # only for fork PRs
+          version: 8.6.3
+          run_install: true
+      - run: pnpm run lint
+
+  Check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8.6.3
+          run_install: true
+      - run: GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }} && pnpm run check
+
+  Tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8.6.3
+          run_install: true
+      - run: GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }} && pnpm run test
+
+  Playwright-Tests:
+    name: Playwright Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8.6.3
+          run_install: true
+      - name: Install Playwright Browsers
+        run: pnpm exec playwright install --with-deps
+      - run: GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }} && pnpm run pw

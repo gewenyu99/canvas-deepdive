@@ -6,8 +6,8 @@ const RedSquareWithResize: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [x, setX] = useState(0);
   const [y, setY] = useState(0);
-  const [w, setW] = useState(50);
-  const [h, setH] = useState(50);
+  const [w, setW] =  useState(50);
+    const [h, setH] = useState(50);
 
   const draw = (ctx: {
     fillStyle: string;
@@ -29,6 +29,7 @@ const RedSquareWithResize: React.FC = () => {
   return (
     <div>
       <canvas ref={canvasRef} height={200} width={200} />
+      <p>The box is positioned at {{x}}, {{y}} with size {{w}} by {{h}}.<p/>
       <div
         style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px" }}
       >
@@ -38,7 +39,7 @@ const RedSquareWithResize: React.FC = () => {
             max={100}
             step={1}
             value={x}
-            label="X"
+            label='X-Position'
             handleChange={(event) => {
               setX(parseInt(event.target.value));
             }}
@@ -50,7 +51,7 @@ const RedSquareWithResize: React.FC = () => {
             max={100}
             step={1}
             value={y}
-            label="Y"
+            label='Y-Position'
             handleChange={(event) => {
               setY(parseInt(event.target.value));
             }}

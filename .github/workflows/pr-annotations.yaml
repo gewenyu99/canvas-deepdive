@@ -1,25 +1,31 @@
-name: Annotate PR with trunk issues
+name: CI
 
 on:
-  workflow_run:
-    workflows: [Pull Request]
-    types: [completed]
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
 
-permissions: read-all
+# cancel in-progress runs on new commits to same PR (gitub.event.number)
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.number || github.sha }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read # to fetch code (actions/checkout)
 
 jobs:
-  trunk_check:
-    name: Trunk Check Annotate
+  Lint:
     runs-on: ubuntu-latest
-
-    permissions:
-      checks: write
-
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
       - name: Trunk Check
         uses: trunk-io/trunk-action@v1
         with:
           post-annotations: true # only for fork PRs
+
+
+  
